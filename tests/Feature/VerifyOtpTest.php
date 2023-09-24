@@ -1,0 +1,106 @@
+<?php
+
+namespace Omnipay\Tokenflex\Tests\Feature;
+
+use Omnipay\Tokenflex\Message\VerifyOtpRequest;
+use Omnipay\Tokenflex\Message\VerifyOtpResponse;
+use Omnipay\Tokenflex\Models\VerifyOtpResponseModel;
+use Omnipay\Tokenflex\Tests\TestCase;
+
+class VerifyOtpTest extends TestCase
+{
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
+
+    public function test_verify_otp_request(): void
+    {
+        $params = [
+            'username'      => 'User001',
+            'password'      => 'P@ssw0rd',
+            'merchant_no'   => 1234567,
+            'terminal_no'   => 123123,
+            'transactionId' => time(),
+            'amount'        => '9.99',
+            'otp_code'      => 123456,
+        ];
+
+        $params_to_be_expected_back = [
+            'headers'        => [
+                'Username' => $params['username'],
+                'Password' => $params['password'],
+            ],
+            'request_params' => [
+                'ReferenceId'       => $params['transactionId'],
+                'MerchantNo'        => $params['merchant_no'],
+                'TerminalNo'        => $params['terminal_no'],
+                'TransactionAmount' => number_format($params['amount'], 2, '', ''),
+                'OtpCode'           => $params['otp_code'],
+            ],
+        ];
+
+        $request = new VerifyOtpRequest($this->getHttpClient(), $this->getHttpRequest());
+
+        $request->initialize($params);
+
+        $data = $request->getData();
+
+        self::assertEquals($data, $params_to_be_expected_back);
+    }
+
+    public function test_verify_otp_response(): void
+    {
+        $response_data = [
+            'Status'      => 1,
+            'Code'        => null,
+            'Message'     => 'message',
+            'Description' => 'description',
+            'Data'        => null,
+        ];
+
+        $response = new VerifyOtpResponse($this->getMockRequest(), $response_data);
+
+        $data = $response->getData();
+
+        $this->assertTrue($response->isSuccessful());
+
+        $expected = new VerifyOtpResponseModel([
+            'Status'      => 1,
+            'Code'        => null,
+            'Message'     => 'message',
+            'Description' => 'description',
+            'Data'        => null
+        ]);
+
+        $this->assertEquals($expected, $data);
+    }
+
+    public function test_verify_otp_response_error(): void
+    {
+        $response_data = [
+            'Status'      => 0,
+            'Code'        => 500,
+            'Message'     => 'message',
+            'Description' => 'description',
+            'Data'        => null,
+        ];
+
+        $response = new VerifyOtpResponse($this->getMockRequest(), $response_data);
+
+        $data = $response->getData();
+
+        $this->assertFalse($response->isSuccessful());
+
+        $expected = new VerifyOtpResponseModel([
+            'Status'      => 0,
+            'Code'        => 500,
+            'Message'     => 'message',
+            'Description' => 'description',
+            'Data'        => null
+        ]);
+
+        $this->assertEquals($expected, $data);
+        $this->assertEquals(500, $response->getCode());
+    }
+}
