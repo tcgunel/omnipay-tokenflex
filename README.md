@@ -5,6 +5,8 @@
 # Omnipay Tokenflex Gateway
 Omnipay gateway for Tokenflex. All the methods of Tokenflex implemented for easy usage.
 
+Tokenflex ile ödeme almaya yardımcı php class. 
+
 ## Requirements
 | PHP       | Package |
 |-----------|---------|
