@@ -45,7 +45,7 @@ class PurchaseRequest extends RemoteAbstractRequest
 
                 $this->validate(
                     'phone',
-                    'phone_extens ion',
+                    'phone_extension',
                 );
 
                 $salesMediaData = $this->getPhoneExtension() . '|' . $this->getPhone();

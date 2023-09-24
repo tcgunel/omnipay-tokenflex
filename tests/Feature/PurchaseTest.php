@@ -3,6 +3,7 @@
 namespace Omnipay\Tokenflex\Tests\Feature;
 
 use Omnipay\Tokenflex\Constants\SalesMediaTypes;
+use Omnipay\Tokenflex\Constants\Services;
 use Omnipay\Tokenflex\Exceptions\SalesMediaTypeException;
 use Omnipay\Tokenflex\Exceptions\ServiceIdException;
 use Omnipay\Tokenflex\Message\PurchaseRequest;
@@ -27,7 +28,7 @@ class PurchaseTest extends TestCase
             'terminal_no'      => 123123,
             'transactionId'    => time(),
             'cashier_info'     => 'Cashier Data',
-            'service_id'       => 888888,
+            'service_id'       => Services::FOOD,
             'amount'           => '9.99',
             'sales_media_type' => SalesMediaTypes::CardNo,
             'card'             => ['number' => '6539107881911853'],
@@ -69,7 +70,7 @@ class PurchaseTest extends TestCase
             'terminal_no'      => 123123,
             'transactionId'    => time(),
             'cashier_info'     => 'Cashier Data',
-            'service_id'       => 888888,
+            'service_id'       => Services::FOOD,
             'amount'           => '9.99',
             'sales_media_type' => SalesMediaTypes::PaymentCode,
             'payment_code'     => 564788,
@@ -111,7 +112,7 @@ class PurchaseTest extends TestCase
             'terminal_no'      => 123123,
             'transactionId'    => time(),
             'cashier_info'     => 'Cashier Data',
-            'service_id'       => 888888,
+            'service_id'       => Services::FOOD,
             'amount'           => '9.99',
             'sales_media_type' => SalesMediaTypes::GsmNumber,
             'phone'            => 5554443322,
@@ -154,7 +155,7 @@ class PurchaseTest extends TestCase
             'terminal_no'      => 123123,
             'transactionId'    => time(),
             'cashier_info'     => 'Cashier Data',
-            'service_id'       => 888888,
+            'service_id'       => Services::FOOD,
             'amount'           => '9.99',
             'sales_media_type' => 100,
             'card'             => ['number' => '6539107881911853'],
@@ -178,7 +179,7 @@ class PurchaseTest extends TestCase
             'terminal_no'      => 123123,
             'transactionId'    => time(),
             'cashier_info'     => 'Cashier Data',
-            'service_id'       => 888888,
+            'service_id'       => 8888,
             'amount'           => '9.99',
             'sales_media_type' => 100,
             'card'             => ['number' => '6539107881911853'],
