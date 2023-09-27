@@ -4,7 +4,6 @@ namespace Omnipay\Tokenflex\Message;
 
 use Omnipay\Common\Exception\InvalidCreditCardException;
 use Omnipay\Common\Exception\InvalidRequestException;
-use Omnipay\Common\Helper;
 use Omnipay\Tokenflex\Constants\SalesMediaTypes;
 use Omnipay\Tokenflex\Traits\HasParameters;
 
@@ -36,7 +35,7 @@ class PurchaseRequest extends RemoteAbstractRequest
 
                 $salesMediaData = $this->getCard()->getNumber();
 
-                if (!Helper::validateLuhn($salesMediaData)) {
+                if (empty($salesMediaData)) {
                     throw new InvalidCreditCardException('Card number is invalid');
                 }
 
