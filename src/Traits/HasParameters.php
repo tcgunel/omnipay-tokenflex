@@ -34,7 +34,7 @@ trait HasParameters
     {
         return
             $this->getTestMode() ?
-                'https://test-onlineauthapi.tokenflex.com.tr/api/Transaction' . $this->endpo:
+                'https://test-onlineauthapi.tokenflex.com.tr/api/Transaction' . $this->endpoint:
                 '' . $this->endpoint;
     }
 
