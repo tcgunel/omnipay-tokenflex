@@ -50,7 +50,7 @@ class VerifyOtpRequest extends RemoteAbstractRequest
                 'Content-Type' => 'application/json',
                 'Accept'       => 'application/json',
             ]),
-            $data['request_params']
+			json_encode($data['request_params'], JSON_THROW_ON_ERROR)
         );
 
         return $this->createResponse($httpResponse);
