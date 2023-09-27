@@ -20,7 +20,7 @@ class FetchTransactionResponse extends AbstractResponse
 
         $this->request = $request;
 
-        $this->response = new FetchTransactionResponseModel(json_decode(json_encode($data, JSON_THROW_ON_ERROR), true, 512, JSON_THROW_ON_ERROR));
+        $this->response = new FetchTransactionResponseModel((array)$this->response);
 
         if (isset($this->response->Data->Status)) {
             switch ($this->response->Data->Status) {

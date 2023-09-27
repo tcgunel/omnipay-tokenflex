@@ -20,7 +20,7 @@ class PurchaseResponse extends AbstractResponse
 
 		$this->request = $request;
 
-		$this->response = new PurchaseResponseModel(json_decode(json_encode($data, JSON_THROW_ON_ERROR), true, 512, JSON_THROW_ON_ERROR));
+		$this->response = new PurchaseResponseModel((array)$this->response);
 	}
 
 	public function isSuccessful(): bool
