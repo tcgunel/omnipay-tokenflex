@@ -2,23 +2,16 @@
 
 namespace Omnipay\Tokenflex\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Tokenflex\Models\FetchTransactionResponseModel;
 
-class FetchTransactionResponse extends AbstractResponse
+class FetchTransactionResponse extends RemoteAbstractResponse
 {
-    protected FetchTransactionResponseModel $response;
-
-    protected $request;
-
     /**
      * @throws \JsonException
      */
     public function __construct($request, $data)
     {
         parent::__construct($request, $data);
-
-        $this->request = $request;
 
         $this->response = new FetchTransactionResponseModel((array)$this->response);
 

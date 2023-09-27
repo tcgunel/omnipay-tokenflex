@@ -2,23 +2,16 @@
 
 namespace Omnipay\Tokenflex\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Tokenflex\Models\CompletePurchaseResponseModel;
 
-class CompletePurchaseResponse extends AbstractResponse
+class CompletePurchaseResponse extends RemoteAbstractResponse
 {
-	protected CompletePurchaseResponseModel $response;
-
-	protected $request;
-
     /**
      * @throws \JsonException
      */
     public function __construct($request, $data)
 	{
 		parent::__construct($request, $data);
-
-		$this->request = $request;
 
 		$this->response = new CompletePurchaseResponseModel((array)$this->response);
 	}

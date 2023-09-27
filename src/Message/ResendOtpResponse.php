@@ -2,23 +2,16 @@
 
 namespace Omnipay\Tokenflex\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Tokenflex\Models\ResendOtpResponseModel;
 
-class ResendOtpResponse extends AbstractResponse
+class ResendOtpResponse extends RemoteAbstractResponse
 {
-	protected ResendOtpResponseModel $response;
-
-	protected $request;
-
     /**
      * @throws \JsonException
      */
     public function __construct($request, $data)
 	{
 		parent::__construct($request, $data);
-
-		$this->request = $request;
 
 		$this->response = new ResendOtpResponseModel((array)$this->response);
 	}

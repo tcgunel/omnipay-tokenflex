@@ -2,23 +2,16 @@
 
 namespace Omnipay\Tokenflex\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Tokenflex\Models\VoidResponseModel;
 
-class VoidResponse extends AbstractResponse
+class VoidResponse extends RemoteAbstractResponse
 {
-	protected VoidResponseModel $response;
-
-	protected $request;
-
     /**
      * @throws \JsonException
      */
     public function __construct($request, $data)
 	{
 		parent::__construct($request, $data);
-
-		$this->request = $request;
 
 		$this->response = new VoidResponseModel((array)$this->response);
 	}
