@@ -35,7 +35,7 @@ trait HasParameters
         return
             $this->getTestMode() ?
                 'https://test-onlineauthapi.tokenflex.com.tr/api/Transaction' . $this->endpoint:
-                '' . $this->endpoint;
+                'https://onlineauthapi.tokenflex.com.tr/api/Transaction' . $this->endpoint;
     }
 
     public function getCashierInfo()
