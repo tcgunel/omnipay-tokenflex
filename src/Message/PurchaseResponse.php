@@ -23,7 +23,7 @@ class PurchaseResponse extends RemoteAbstractResponse
 
 	public function getMessage(): ?string
 	{
-		return $this->response->Message . '' . $this->response->Description;
+		return $this->response->Message ?? $this->response->Description ?? $this->response->Data->Description;
 	}
 
     public function getCode()
